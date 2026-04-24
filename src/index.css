@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #050505;
+  --color-darker: #0a0a0a;
+  --color-accent: #C5A059;
+  --color-glass: rgba(255, 255, 255, 0.03);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+
+  --font-display: "Playfair Display", serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+
+  --animate-marquee: marquee 20s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-dark text-white overflow-x-hidden antialiased font-sans;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply backdrop-blur-xl bg-darker/70 border-b border-white/5;
+  }
+
+  .bento-card {
+    @apply bg-white/2 border border-white/5 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)];
+  }
+
+  .bento-card:hover {
+    @apply border-accent bg-white/4 -translate-y-1;
+  }
+
+  .text-gradient {
+    @apply bg-linear-to-br from-white to-accent bg-clip-text text-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-1;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-dark;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-accent;
+  }
+
+  .btn-pulse {
+    animation: pulse-gold 2s infinite;
+  }
+}
+
+@keyframes pulse-gold {
+  0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(197, 160, 89, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+}
